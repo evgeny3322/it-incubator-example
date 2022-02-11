@@ -1,39 +1,19 @@
 import React from "react";
 
 type RatingPropsType = {
-    value: 0 | 1 | 2
+    value: 0 | 1 | 2 | 3 | 4
 }
 
-function Rating(props: RatingPropsType) {
+export function Rating(props: RatingPropsType) {
     console.log("Rating rendering")
-    if (props.value === 1) {
-        return (
-            <div>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 2) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <Star selected={props.value > 0}/>
+            <Star selected={props.value > 1}/>
+            <Star selected={props.value > 2}/>
+            <Star selected={props.value > 3}/>
+        </div>
+    )
 
 }
 
