@@ -2,12 +2,12 @@ import React, {useState} from "react";
 
 
 type OnOffPropsType = {
-    setOn: boolean
-    // onClick:(on:boolean)=>void
+    on: boolean
+    onChange: (on: boolean) => void
 }
 
 
-export function OnOff(props: OnOffPropsType) {
+export function UnControlledOnOff(props: OnOffPropsType) {
 
     let [on, setOn] = useState(false)
 
@@ -20,14 +20,14 @@ export function OnOff(props: OnOffPropsType) {
         width: "30px",
         height: "30px",
         border: "2px solid black",
-        backgroundColor: on ? "green" : "white"
+        backgroundColor: props.on ? "green" : "white"
     }
 
     const offStyle = {
         width: "30px",
         height: "30px",
         border: "2px solid black",
-        backgroundColor: on ? "white" : "red"
+        backgroundColor: props.on ? "white" : "red"
     }
 
     const indicatorStyle = {
@@ -35,14 +35,25 @@ export function OnOff(props: OnOffPropsType) {
         height: "10px",
         border: "2px solid black",
         borderRadius: "15px",
-        backgroundColor: on ? "green" : "red"
+        backgroundColor: props.on ? "green" : "red"
     }
+
+    const onClicked = () => {
+        setOn(true)
+        props.onChange(true)
+    }
+
+    const offClicked = () => {
+        setOn(true)
+        props.onChange(true)
+    }
+
 
     return (
         <div style={style}>
-            <div style={onStyle} onClick={() => setOn(true)}>on
+            <div style={onStyle} onClick={onClicked}>on
             </div>
-            <div style={offStyle} onClick={() => setOn(false)}>off
+            <div style={offStyle} onClick={offClicked}>off
             </div>
             <div style={indicatorStyle}></div>
         </div>
