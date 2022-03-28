@@ -1,19 +1,20 @@
-import React, {useState} from "react";
-import accordion from "../Accordion/Accordion";
+import React, {useReducer, useState} from "react";
+import {reducer, TOGGLE_COLLAPSED} from "./reducer";
 
 
 type SelfControlledAccordionPropsType = {
     title: string,
-    // collapsed: boolean
 }
 
 function SelfControlledAccordion(props: SelfControlledAccordionPropsType) {
 
-    let [collapsed, setOn] = useState(false)
+    // let [collapsed, setOn] = useState(false)
+    let [collapsed, dispatch] = useReducer(reducer, {collapsed: false})
 
-    // console.log(collapsed,'Accordion')
     return <div>
-        <AccordionTitle title={props.title} onClick={() => setOn(!collapsed)}/>
+        <AccordionTitle title={props.title} onClick={() => {
+            dispatch({type: TOGGLE_COLLAPSED})
+        }}/>
         {!collapsed && <AccordionBody/>}
     </div>
 }
